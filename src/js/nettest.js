@@ -23,11 +23,11 @@ addTest(testSuiteName.NETWORK, testCaseName.TCPENABLED, function(test) {
 
 // Test whether it is IPv6 enabled (TODO: test IPv6 to a destination).
 // Turn on IPv6, and try to get an IPv6 host candidate.
-addTest(testSuiteName.NETWORK, testCaseName.IPV6ENABLED, function(test) {
-  var params = {optional: [{googIPv6: true}]};
-  var networkTest = new NetworkTest(test, null, params, Call.isIpv6);
-  networkTest.run();
-});
+// addTest(testSuiteName.NETWORK, testCaseName.IPV6ENABLED, function(test) {
+//   var params = {optional: [{googIPv6: true}]};
+//   var networkTest = new NetworkTest(test, null, params, Call.isIpv6);
+//   networkTest.run();
+// });
 
 var NetworkTest = function(test, protocol, params, iceCandidateFilter) {
   this.test = test;

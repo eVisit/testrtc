@@ -14,11 +14,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="chrome=1" />
   <base target="_blank">
-  <title>WebRTC Troubleshooter</title>
+  <title>Equipment Test</title>
 
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
 
   <!-- Google Analytics -->
+  <!--
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -28,7 +29,8 @@
     ga('create', 'UA-48530561-3', 'auto');
     ga('send', 'pageview');
   </script>
-
+  -->
+  <script src="../components/js-cookie/src/js.cookie.js"></script>
   <script src="../components/webrtc-adapter/adapter.js"></script>
   <script src="../components/webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -42,11 +44,6 @@
 
   <!-- Placeholder for dynamically generated test suites. -->
   <div id="content"></div>
-
-  <footer>
-    <span><a href="//www.google.com/accounts/TOS">Terms</a></span>
-    <span><a href="//www.google.com/policies/privacy/">Privacy</a></span>
-  </footer>
 
   <script src="js/main.js"></script>
   <script src="js/call.js"></script>
@@ -62,5 +59,9 @@
   <script src="js/nettest.js"></script>
   <script src="js/conntest.js"></script>
   <script src="js/bandwidth_test.js"></script>
+  <script>
+    // Clean test results on startup
+    Cookies.set("currentResults", {}, {path:'/'});
+  </script>
 </body>
 </html>

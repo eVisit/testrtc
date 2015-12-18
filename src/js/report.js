@@ -43,13 +43,34 @@ Report.prototype = {
   logTestRunResult: function(testName, status) {
     // Google Analytics event for the test result to allow to track how the
     // test is doing in the wild.
-    ga('send', {
-      'hitType': 'event',
-      'eventCategory': 'Test',
-      'eventAction': status,
-      'eventLabel': testName,
-      'nonInteraction': 1
-    });
+    // ga('send', {
+    //   'hitType': 'event',
+    //   'eventCategory': 'Test',
+    //   'eventAction': status,
+    //   'eventLabel': testName,
+    //   'nonInteraction': 1
+    // });
+    var currentResults = Cookies.getJSON("currentResults");
+    if (!currentResults) {
+      currentResults = {}
+    }
+    currentResults[testName] = status;
+    Cookies.set("currentResults", currentResults, {path:'/'});
+    console.log("logTestRunResultlogTestRunResultlogTestRunResultlogTestRunResultlogTestRunResult");
+    console.log(Cookies.getJSON("currentResults"));
+    var count = Object.keys(Cookies.getJSON("currentResults")).length;
+    console.log(count);
+    if (count == 11) {
+      // test completed, check if all success
+      console.log("All test run");
+      var result = "complete"
+      for (test in currentResults) {
+        if(currentResults[test] == "failure") {
+          result = "failure"
+        }
+      }
+      Cookies.set("eVisitEquipmentTest", result, {path:'/'});
+    }
   },
 
   generate: function(bugDescription) {

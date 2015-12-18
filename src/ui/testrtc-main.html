@@ -44,19 +44,33 @@
       overflow-x: hidden;
       white-space: nowrap;
     }
+
+    .titlebar .paper-toolbar-0 {
+      background-color: none;
+      color: #000;
+    }
   </style>
   <template>
     <gum-dialog heading="Welcome to WebRTC Troubleshooter" pending="{{pending}}"></gum-dialog>
 
     <!-- Title toolbar -->
     <paper-toolbar class="titlebar">
-      <span class="title">WebRTC Troubleshooter</span>
-      <paper-icon-button icon="menu" on-tap="openSettingsDialog"></paper-icon-button>
-      <paper-icon-button icon="bug-report" on-tap="openBugReport"></paper-icon-button>
+      <span class="title">Equipment Test</span>
       <paper-button id="startButton" on-tap="run" raised disabled>Start</paper-button>
     </paper-toolbar>
 
+    <div style="margin:0px auto; max-width:40em;">
+    <div class="section">
+      <div class="select">
+        <label>Audio source: <select id="audioSource"></select></label>
+        &#160;&#160;&#160;
+        <label>Video source: <select id="videoSource"></select></label>
+      </div>
+    </div>
+    </div>
+
     <!-- Settings dialog -->
+    <!--
     <paper-dialog id="settings">
       <h2>Settings</h2>
 
@@ -87,9 +101,7 @@
         <paper-button dialog-confirm>Continue</paper-button>
       </div>
     </paper-dialog>
-
-    <!-- Bug report dialog -->
-    <report-dialog id="bugreport"></report-dialog>
+    -->
   </template>
   <script>
     // Parse URL parameters and configure test filters.
