@@ -64,6 +64,7 @@ Report.prototype = {
       // test completed, check if all success
       console.log("All test run");
       var result = "complete";
+      var test = '';
       for (test in currentResults) {
         if(currentResults[test] == "failure") {
           result = "failure"
