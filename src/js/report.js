@@ -56,13 +56,11 @@ Report.prototype = {
     }
     currentResults[testName] = status;
     Cookies.set("currentResults", currentResults, {path:'/'});
-    console.log("logTestRunResultlogTestRunResultlogTestRunResultlogTestRunResultlogTestRunResult");
-    console.log(Cookies.getJSON("currentResults"));
+    console.log("eVisit TestRTC completed "+testName+" with status "+status );
     var count = Object.keys(Cookies.getJSON("currentResults")).length;
-    console.log(count);
     if (count == 11) {
       // test completed, check if all success
-      console.log("All test run");
+      console.log("eVisit TestRTC all test run.");
       var result = "complete";
       var test = '';
       for (test in currentResults) {

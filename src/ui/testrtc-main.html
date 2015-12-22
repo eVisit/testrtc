@@ -19,7 +19,7 @@
   <style>
     .titlebar {
       --paper-toolbar-background: #4F7DC9;
-      --paper-toolbar-color: #FFF;
+      --paper-toolbar-color: #777777;
       font-size: 18px;
       font-weight: 500;
       transition: height .2s;
@@ -29,9 +29,12 @@
     }
 
     #startButton {
-      line-height: 3em;
       background-color: #9E9;
-      color: #000;
+      color: #FFF;
+      line-height: 1em;
+      width: 200px;
+      font-size: 16px;
+      text-transform: none;
     }
 
     .section {
@@ -45,8 +48,8 @@
       white-space: nowrap;
     }
 
-    .titlebar .paper-toolbar-0 {
-      background-color: none;
+    paper-toolbar.paper-toolbar-0 {
+      background: none;
       color: #000;
     }
   </style>
@@ -60,13 +63,13 @@
     </paper-toolbar>
 
     <div style="margin:0px auto; max-width:40em;">
-    <div class="section">
-      <div class="select">
-        <label>Audio source: <select id="audioSource"></select></label>
-        &#160;&#160;&#160;
-        <label>Video source: <select id="videoSource"></select></label>
+      <div class="section">
+        <div class="select">
+          <label>Audio source: <select id="audioSource"></select></label>
+          &#160;&#160;&#160;
+          <label>Video source: <select id="videoSource"></select></label>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- Settings dialog -->
