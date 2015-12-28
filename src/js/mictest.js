@@ -48,6 +48,7 @@ function MicTest(test) {
 
 MicTest.prototype = {
   run: function() {
+    Cookies.set("eVisitEquipmentTest", "running", {path:'/'});
     if (typeof audioContext === 'undefined') {
       this.test.reportError('WebAudio is not supported, test cannot run.');
       this.test.done();

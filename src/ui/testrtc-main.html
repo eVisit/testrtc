@@ -38,8 +38,6 @@
     }
 
     .section {
-      max-width: 40em;
-      margin-top: 3em;
     }
 
     .link {
@@ -52,22 +50,28 @@
       background: none;
       color: #000;
     }
+
+    .info {
+      font-size: 14px;
+      font-weight: 100;
+      width: 40em;
+    }
   </style>
   <template>
     <gum-dialog heading="Welcome to WebRTC Troubleshooter" pending="{{pending}}"></gum-dialog>
 
     <!-- Title toolbar -->
     <paper-toolbar class="titlebar">
-      <span class="title">Equipment Test</span>
+      <span class="info"><!-- Select the "Start" button to begin the equipment test --></span>
       <paper-button id="startButton" on-tap="run" raised disabled>Start</paper-button>
     </paper-toolbar>
 
-    <div style="margin:0px auto; max-width:40em;">
+    <div style="margin:0 40px;">
       <div class="section">
         <div class="select">
-          <label>Audio source: <select id="audioSource"></select></label>
+          <label>Microphone <select id="audioSource"></select></label>
           &#160;&#160;&#160;
-          <label>Video source: <select id="videoSource"></select></label>
+          <label>Camera: <select id="videoSource"></select></label>
         </div>
       </div>
     </div>

@@ -60,14 +60,16 @@ Report.prototype = {
     var count = Object.keys(Cookies.getJSON("currentResults")).length;
     if (count == 11) {
       // test completed, check if all success
-      console.log("eVisit TestRTC all test run.");
+      console.log("eVisit TestRTC all test run...");
       var result = "complete";
       var test = '';
       for (test in currentResults) {
         if(currentResults[test] == "failure") {
           result = "failure"
+          break;
         }
       }
+      console.log("eVisit TestRTC result: "+result);
       Cookies.set("eVisitEquipmentTest", result, {path:'/'});
     }
   },

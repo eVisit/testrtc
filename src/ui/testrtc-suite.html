@@ -109,8 +109,6 @@
         this.tests.push(test);
       },
       run: function(doneCallback) {
-        console.log("srakdjalsdjasldkkj asld");
-        Cookies.set("eVisitEquipmentTest", "running", {path:'/'});
         this.opened = true;
         this.state = 'running';
         runAllSequentially(this.tests, this.allTestsFinished.bind(this,
