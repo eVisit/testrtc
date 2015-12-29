@@ -52,13 +52,20 @@ Report.prototype = {
     // });
     var currentResults = Cookies.getJSON("currentResults");
     if (!currentResults) {
-      currentResults = {}
+      currentResults = {"Camera tests":"failure"}
     }
-    currentResults[testName] = status;
+    // Handle video tests results
+    if (testName.includes("Check")) {
+      if (status == "success") {
+        currentResults["Camera tests"]="success"
+      }
+    } else {
+      currentResults[testName] = status;
+    }
     Cookies.set("currentResults", currentResults, {path:'/'});
     console.log("eVisit TestRTC completed "+testName+" with status "+status );
     var count = Object.keys(Cookies.getJSON("currentResults")).length;
-    if (count == 11) {
+    if (count == 8) {
       // test completed, check if all success
       console.log("eVisit TestRTC all test run...");
       var result = "complete";

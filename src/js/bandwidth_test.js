@@ -17,7 +17,8 @@ addTest(testSuiteName.THROUGHPUT, testCaseName.DATATHROUGHPUT, function(test) {
 
 function DataChannelThroughputTest(test) {
   this.test = test;
-  this.testDurationSeconds = 5.0;
+  // this.testDurationSeconds = 5.0;
+  this.testDurationSeconds = 3.0;
   this.startTime = null;
   this.sentPayloadBytes = 0;
   this.receivedPayloadBytes = 0;
@@ -124,7 +125,8 @@ addTest(testSuiteName.THROUGHPUT, testCaseName.VIDEOBANDWIDTH, function(test) {
 function VideoBandwidthTest(test) {
   this.test = test;
   this.maxVideoBitrateKbps = 2000;
-  this.durationMs = 40000;
+  // this.durationMs = 40000;
+  this.durationMs = 20000;
   this.statStepMs = 100;
   this.bweStats = new StatisticsAggregate(0.75 * this.maxVideoBitrateKbps *
       1000);
