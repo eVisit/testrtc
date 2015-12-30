@@ -129,10 +129,12 @@
           this.opened = false;
         } else if (errors === 0 && warnings > 0) {
           this.state = 'warning';
-          this.opened = true;
+          // this.opened = true;
+          this.opened = false;
         } else {
           this.state = 'failure';
-          this.opened = true;
+          // this.opened = true;
+          this.opened = false;
         }
         doneCallback();
       }

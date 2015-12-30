@@ -56,9 +56,13 @@
       font-weight: 100;
       width: 40em;
     }
+
+    paper-button.paper-button-0[elevation="1"] {
+      box-shadow: none;
+    }
   </style>
   <template>
-    <gum-dialog heading="Welcome to WebRTC Troubleshooter" pending="{{pending}}"></gum-dialog>
+    <gum-dialog heading="Welcome to the Equipment test" pending="{{pending}}"></gum-dialog>
 
     <!-- Title toolbar -->
     <paper-toolbar class="titlebar">
