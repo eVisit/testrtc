@@ -32,9 +32,10 @@
       background-color: #9E9;
       color: #FFF;
       line-height: 1em;
-      width: 200px;
+      width: 180px;
       font-size: 16px;
       text-transform: none;
+      float: right;
     }
 
     .section {
@@ -60,22 +61,63 @@
     paper-button.paper-button-0[elevation="1"] {
       box-shadow: none;
     }
+
+    .styled-select {
+       /*background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;*/
+       color: rgba(0, 0, 0, 0.54);
+       font-family: 'Open Sans', Roboto, 'Helvetica Neue', sans-serif
+       height: auto;
+       overflow: hidden;
+    }
+
+    .styled-select select {
+       background: transparent;
+       border: none;
+       font-size: 14px;
+       height: 29px;
+       padding: 5px; /* If you add too much padding here, the options won't show in IE */
+       /*width: 268px;*/
+    }
+
+    .styled-select.slate {
+       /*background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;*/
+       display: inline-block;
+       font-size: 20px;
+       width: 240px;
+    }
+
+    .styled-select.slate label {
+      padding: 6px;
+    }
+
+    .styled-select.slate select {
+       border-bottom: 1px solid #ccc;
+       color: rgba(0, 0, 0, 0.54);
+       font-size: 16px;
+       height: auto;
+       width: 208px;
+    }
+
   </style>
   <template>
     <gum-dialog heading="Welcome to the Equipment test" pending="{{pending}}"></gum-dialog>
 
     <!-- Title toolbar -->
-    <paper-toolbar class="titlebar">
-      <span class="info"><!-- Select the "Start" button to begin the equipment test --></span>
-      <paper-button id="startButton" on-tap="run" raised disabled>Start</paper-button>
-    </paper-toolbar>
+    <!-- <paper-toolbar class="titlebar"> -->
+      <!-- <span class="info">Select the "Start" button to begin the equipment test</span> -->
+      <!-- <paper-button id="startButton" on-tap="run" raised disabled>Start</paper-button> -->
+    <!-- </paper-toolbar> -->
 
-    <div style="margin:0 40px;">
+    <div style="margin:40px 40px 0 40px;">
       <div class="section">
         <div class="select">
-          <label>Microphone <select id="audioSource"></select></label>
-          &#160;&#160;&#160;
-          <label>Camera: <select id="videoSource"></select></label>
+          <paper-button id="startButton" on-tap="run" raised disabled>Start</paper-button>
+          <div class="select styled-select slate">
+            <label>Microphone</label><select id="audioSource"></select>
+          </div>
+          <div class="select styled-select slate">
+            <label>Camera: </label><select id="videoSource"></select>
+          </div>
         </div>
       </div>
     </div>
