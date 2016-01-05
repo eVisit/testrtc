@@ -127,6 +127,10 @@
         if (errors === 0 && warnings === 0 && successes > 0) {
           this.state = 'success';
           this.opened = false;
+        } else if (this.tests.length === 4 && successes > 0) {
+          // video with some resolutions tests ok?
+          this.state = 'success';
+          this.opened = false;
         } else if (errors === 0 && warnings > 0) {
           this.state = 'warning';
           // this.opened = true;
