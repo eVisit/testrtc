@@ -200,7 +200,7 @@ Call.asyncCreateStunConfig = function(onSuccess, onError) {
 // Ask computeengineondemand to give us TURN server credentials and URIs.
 Call.CEOD_URL =
     // 'https://computeengineondemand.appspot.com/turn?username=1234&key=5678';
-    window.location.host.includes('local') ? "http://"+window.location.host+'/turn?username=1234&key=5678' : "https://"+window.location.host+'/turn?username=1234&key=5678';
+    (window.location.host.indexOf('local') > 0) ? "http://"+window.location.host+'/turn?username=1234&key=5678' : "https://"+window.location.host+'/turn?username=1234&key=5678';
 
 Call.fetchCEODTurnConfig_ = function(onSuccess, onError) {
   var xhr = new XMLHttpRequest();
