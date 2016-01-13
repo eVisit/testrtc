@@ -55,7 +55,7 @@ Report.prototype = {
       currentResults = {"Camera tests":"failure"}
     }
     // Handle video tests results
-    if (testName.includes("Check")) {
+    if (testName.indexOf("Check") >= 0) {
       if (status == "success") {
         currentResults["Camera tests"]="success"
       }
