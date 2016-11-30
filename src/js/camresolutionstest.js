@@ -84,7 +84,7 @@ CamResolutionsTest.prototype = {
         this.test.reportInfo(resolution[0] + 'x' + resolution[1] +
             ' not supported');
       } else {
-        this.test.reportError('getUserMedia failed with error: ' + error);
+        this.test.reportError('getUserMedia failed with error: ' + error.name);
       }
       this.maybeContinueGetUserMedia();
     }.bind(this));
@@ -124,7 +124,7 @@ CamResolutionsTest.prototype = {
         if (this.isShuttingDown) {
           return;
         }
-        this.test.reportError('Your camera reported itself as muted.');
+        this.test.reportWarning('Your camera reported itself as muted.');
         // MediaStreamTrack.muted property is not wired up in Chrome yet,
         // checking isMuted local state.
         this.isMuted = true;
@@ -144,12 +144,12 @@ CamResolutionsTest.prototype = {
     video.setAttribute('muted', '');
     video.width = resolution[0];
     video.height = resolution[1];
-    attachMediaStream(video, stream);
+    video.srcObject = stream;
     var frameChecker = new VideoFrameChecker(video);
-    var call = new Call();
+    var call = new Call(null, this.test);
     call.pc1.addStream(stream);
     call.establishConnection();
-    call.gatherStats(call.pc1,
+    call.gatherStats(call.pc1, stream,
                      this.onCallEnded_.bind(this, resolution, video,
                                             stream, frameChecker),
                      100);
@@ -175,16 +175,16 @@ CamResolutionsTest.prototype = {
     var statsReport = {};
     var frameStats = frameChecker.frameStats;
 
-    for (var index = 0; index < stats.length - 1; index++) {
+    for (var index in stats) {
       if (stats[index].type === 'ssrc') {
         // Make sure to only capture stats after the encoder is setup.
-        if (stats[index].stat('googFrameRateInput') > 0) {
+        if (parseInt(stats[index].googFrameRateInput) > 0) {
           googAvgEncodeTime.push(
-              parseInt(stats[index].stat('googAvgEncodeMs')));
+              parseInt(stats[index].googAvgEncodeMs));
           googAvgFrameRateInput.push(
-              parseInt(stats[index].stat('googFrameRateInput')));
+              parseInt(stats[index].googFrameRateInput));
           googAvgFrameRateSent.push(
-              parseInt(stats[index].stat('googFrameRateSent')));
+              parseInt(stats[index].googFrameRateSent));
         }
       }
     }
@@ -228,7 +228,7 @@ CamResolutionsTest.prototype = {
   extractEncoderSetupTime_: function(stats, statsTime) {
     for (var index = 0; index !== stats.length; index++) {
       if (stats[index].type === 'ssrc') {
-        if (stats[index].stat('googFrameRateInput') > 0) {
+        if (parseInt(stats[index].googFrameRateInput) > 0) {
           return JSON.stringify(statsTime[index] - statsTime[0]);
         }
       }

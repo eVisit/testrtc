@@ -57,6 +57,7 @@ NetworkTest.prototype = {
   // specified it is added with the requested protocol.
   filterConfig: function(config, protocol) {
     var transport = 'transport=' + protocol;
+    var newIceServers = [];
     for (var i = 0; i < config.iceServers.length; ++i) {
       var iceServer = config.iceServers[i];
       var newUrls = [];
@@ -64,13 +65,17 @@ NetworkTest.prototype = {
         var uri = iceServer.urls[j];
         if (uri.indexOf(transport) !== -1) {
           newUrls.push(uri);
-        } else if (
-          uri.indexOf('?transport=') === -1 && uri.startsWith('turn')) {
+        } else if (uri.indexOf('?transport=') === -1 &&
+            uri.startsWith('turn')) {
           newUrls.push(uri + '?' + transport);
         }
       }
-      iceServer.urls = newUrls;
+      if (newUrls.length !== 0) {
+        iceServer.urls = newUrls;
+        newIceServers.push(iceServer);
+      }
     }
+    config.iceServers = newIceServers;
   },
 
   // Create a PeerConnection, and gather candidates using RTCConfig |config|
@@ -128,9 +133,17 @@ NetworkTest.prototype = {
   // This will trigger candidate gathering.
   createAudioOnlyReceiveOffer: function(pc) {
     var createOfferParams = {offerToReceiveAudio: 1};
-    pc.createOffer(function(offer) {
-      pc.setLocalDescription(offer, noop, noop);
-    }, noop, createOfferParams);
+    pc.createOffer(
+      createOfferParams
+    ).then(
+      function(offer) {
+        pc.setLocalDescription(offer).then(
+          noop,
+          noop
+        );
+      },
+      noop
+    );
 
     // Empty function for callbacks requiring a function.
     function noop() {}

@@ -31,13 +31,14 @@ function getSources_() {
 }
 
 function requestVideo_(id) {
-  getUserMedia({
+  navigator.mediaDevices.getUserMedia({
     video: {optional: [{sourceId: id}]},
-    audio: false},
+    audio: false}).then(
     function(stream) {
       getUserMediaOkCallback_(stream);
     },
-    getUserMediaFailedCallback_);
+    getUserMediaFailedCallback_
+  );
 }
 
 function getUserMediaFailedCallback_(error) {
@@ -61,7 +62,7 @@ function getUserMediaOkCallback_(stream) {
     div.appendChild(deviceLabel);
   }
   stream.getVideoTracks()[0].addEventListener('ended', errorMessage_);
-  attachMediaStream(document.getElementById('view' + counter), stream);
+  document.getElementById('view' + counter).srcObject = stream;
   counter++;
 }
 
