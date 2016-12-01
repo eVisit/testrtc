@@ -108,13 +108,13 @@ module.exports = function(grunt) {
       // usage with this name: grunt jshint:files
       files: ['**/*.js']
     },
-
+    // TODO: Point to production endpoint by default, but should detect env (staging or dev)
     uglify: {
       options: {
         compress: {
           global_defs: {
             'API_KEY': process.env.API_KEY,
-            'TURN_URL': 'https://networktraversal.googleapis.com/v1alpha/iceconfig?key='
+            'TURN_URL': 'https://app.evisit.com/turn?key='
           },
           dead_code: true,
         },

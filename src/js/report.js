@@ -50,7 +50,7 @@ Report.prototype = {
     //   'eventLabel': testName,
     //   'nonInteraction': 1
     // });
-    var currentResults = Cookies.getJSON("currentResults", {path:'/'});
+    var currentResults = Cookies.getJSON("currentResults");
     if (!currentResults) {
       currentResults = {"Camera tests":"failure"}
     }
@@ -64,7 +64,7 @@ Report.prototype = {
     }
     Cookies.set("currentResults", currentResults, {path:'/'});
     console.log("eVisit TestRTC completed "+testName+" with status "+status );
-    var count = Object.keys(Cookies.getJSON("currentResults", {path:'/'})).length;
+    var count = Object.keys(Cookies.getJSON("currentResults")).length;
     if (count == 8) {
       // test completed, check if all success
       console.log("eVisit TestRTC all test run...");
